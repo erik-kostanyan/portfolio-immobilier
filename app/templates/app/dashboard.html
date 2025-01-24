@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% load plotly_dash %}
+
+{% block content %}
+  <div class="pagetitle">
+    <h1>Dashboard</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+        <li class="breadcrumb-item active"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+  {% plotly_header %}
+    <div class="{% plotly_class name='immo_dashboard_dash' %} card">
+      {% plotly_direct name='immo_dashboard_dash' %}
+    </div>
+  {% plotly_footer %}
+
+  
+
+{% endblock %}

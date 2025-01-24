@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Erik K. Portfolio</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'images/favicon.png'%} " rel="icon">
+  <link href="{% static 'images/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link rel="stylesheet" href="{% static 'styles/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/bootstrap-icons.css' %}">
+  <!-- <link rel="stylesheet" href="{% static 'styles/boxicons.min.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/quill.snow.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/quill.bubble.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/remixicon.css' %}"> -->
+
+  <!-- Template Main CSS File -->
+  <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+  <!-- Plotly dash JS file -->
+   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="{% url 'home' %}" class="logo d-flex align-items-center" style="text-decoration: none;">
+        <img src="{% static 'images/logo.png' %}" alt="">
+        <span class="d-none d-lg-block">Erik Kostanyan</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-heading">French Real Estate</li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'home' %}">
+          <i class="bi bi-report"></i>
+          <span>Report</span>
+        </a>
+      </li><!-- End Report Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'dashboard' %}">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-heading">Personal</li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'profile' %}">
+          <i class="bi bi-person"></i>
+          <span>Profile</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'contact' %}">
+          <i class="bi bi-envelope"></i>
+          <span>Contact</span>
+        </a>
+      </li><!-- End Contact Page Nav -->
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+    {% block content %}
+
+    {% endblock %}
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Erik Kostanyan</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+        <!-- Designed by     <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <!-- <script src="{% static 'js/apexcharts.min.js' %}"></script> -->
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <!-- <script src="{% static 'js/chart.umd.js' %}"></script> -->
+  <!-- <script src="{% static 'js/echarts.min.js' %}"></script> -->
+  <!-- <script src="{% static 'js/quill.js' %}"></script> -->
+  <!-- <script src="{% static 'js/simple-datatables.js' %}"></script> -->
+  <!-- <script src="{% static 'js/tinymce.min.js' %}"></script> -->
+  <!-- <script src="{% static 'js/validate.js' %}"></script> -->
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

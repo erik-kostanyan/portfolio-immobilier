@@ -1,0 +1,340 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="pagetitle">
+    <h1><b>Dwelling prices and Interest rates in France, the details.</b></h1>
+    <nav>
+    	<ol class="breadcrumb">
+        	<li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+        	<li class="breadcrumb-item active"><a href="{% url 'home' %}">Report</a></li>
+    	</ol>
+    </nav>
+</div><!-- End Page Title -->
+
+
+<section class="section">
+
+    <div class="row">
+        <div class="col-lg-6">
+          	<div class="card">
+            	<div class="card-body">
+            		<h5 class="card-title"><b>Background Story</b><Title></Title></h5>
+            		<p>
+						In 2023, I was looking to buy an appartement in <b>France</b> when the interest rates were just starting to rise significantly. <br>
+						During my 6 month appartement hunt, I saw some <i>significant dwelling price and volume changes</i> in my local area, which sparked my interest. <br>
+						The interest rates were climbing slowly but constantly, and I had the feeling that the overall prices of appartements were dropping but so were the amount of appartements available in my price range. <br>
+						I decided to analyse the data and see if this hypothesis is true or false. <br><br>
+						Dwelling prices are of course also dependant on inflation changes, but we will analyse inflation-adjusted data as much as we can. <br>
+						For this reason I have gathered some data from the French Government websites, who provide the adjusted and historic data we will need to make this analysis.
+            		</p>
+            	</div>
+          	</div>
+    	</div>
+    </div>
+
+	<div class="row">
+    	<div class="col-lg-6">
+        	<div class="card">
+        		<div class="card-body">
+        	    	<h5 class="card-title"><b> Datasets</b><Title></Title></h5>
+					<p>
+						I've gathered the <i>datasets</i> from the following sources:
+					</p>
+					<ol>
+						<li>
+							<p>
+								<a href="https://www.kaggle.com/datasets/benoitfavier/immobilier-france">
+									Immobilier France (Kaggle Dataset)
+								</a>
+							</p>
+						</li>
+						<li>
+							<p>
+								<a href="https://www.igedd.developpement-durable.gouv.fr/house-prices-in-france-property-price-index-french-a1117.html?lang=fr">
+								CGEDD d'après Direction Générale des Finances Publiques (French Government)
+								</a>
+							</p>
+						</li>
+					</ol>
+						
+        	  	</div>
+        	</div>
+      	</div>
+    </div>
+
+	<div class="row">
+        <div class="col-lg-6">
+          	<div class="card">
+            	<div class="card-body">
+            		<h5 class="card-title"><b>Hypotheses</b><Title></Title></h5>
+            		<p>
+						To start this report, I will present a list of <i><b>prior hypotheses</b></i> and questions we will look to test and research.
+					</p>
+					<ol>
+						<li>
+							<p>
+								Prices drop slightly when we see a constant increase of the interest over a couple month period.
+							</p>
+							
+						</li>
+						<li>
+							<p>
+								Volumes of dwellings available/sold drop significantly when we see a constant increase of the interest rates over a couple month period.
+							</p>
+							
+						</li>
+						<li>
+							<p>
+								Volume distributions will tend to shift to the right when interest rates are high and/or increasing.
+							</p>
+							
+						</li>
+						<li>
+							<p>
+								Because of the nature of financial institutions and the conditions and requirements to be eligible for loans in France,<br> 
+								I assume that the dwellings in a higher price range will be less effected by the interest changes.
+							</p>
+						</li>
+					</ol>
+            	</div>
+          	</div>
+    	</div>
+    </div>
+
+	<div class="row">
+        <div class="col-lg-6">
+          	<div class="card">
+            	<div class="card-body">
+            		<h5 class="card-title"><b>Analysis Part 1 : <i>Mortgage Flux</i></b><Title></Title></h5>
+            		<p>
+						We start by taking a closer look at the <i>mortgage flux</i> in France in the last couple of years. <br> <br>
+						The Kaggle dataset contains a file with the mortgage flux data, this dataset tells us the flux of new mortgages in million € month on month in France since 2015. <br>
+						I've combined this datatable with the interest rates at the corresponding months to give us an overview of the relationship between these 2 indices. <br>
+					</p>
+
+					<img src="{% static 'images/graphs/mortgageflux_line.png' %}" alt="" class="graph-image">
+
+					<p>
+						<br>
+						Immediately, we see a couple of <i>interesting patterns</i> in this graph. <br>
+					</p>
+
+					<ol>
+						<li>
+							<p>
+								To start, we see a big spike in mortgage flux in 2017, which is partly explained by the relative low interest and mortgage rates at the time. <br> <br>
+								An important note on the spike in 2017 are the longer loan terms and targeted tax incentives that were prevalent at the time, that paved the way for this increase.
+								This had a huge effect on the house market, and house sales reached a high. <br>
+							</p>
+							<p>
+								<a href="https://www.connexionfrance.com/practical/property-market-expected-to-cool-after-a-record-2017/513160">
+								(For further reading on the topic: Click this link!)
+								</a>
+							</p>
+						</li>
+						
+						<li>
+							<p>
+								A second pattern is the correlation between the two indices from the second quarter of 2022 onwards. <br>
+								Here we see a clear negative correlation between the graphs: with the interest rates soaring constantly, we see a significant drop in the mortgage flux.
+							</p>
+						</li>
+					</ol>
+					<p>
+						Based on the previous graph we can also suspect a <b>slightly negative relationship</b> between these 2 indices. <br>
+						This is backed by the following <i>correlation pairgrid</i>. <br>
+					</p>
+
+					<img src="{% static 'images/graphs/mortgageflux_pairgrid.png' %}" alt="" class="graph-image2">
+
+					<p>
+						<br>
+						This correlation graph strengthens our prior assumption of a negative correlation between the indices. <br>
+						The trendline used in this graph is a linear regression based on the scatter points of the 2 indices, which show a clear negative trend in the graph.
+					</p>
+
+					<h5 class="card-title">Next steps<Title></Title></h5>
+
+					<p>
+						Because the mortgage flux is the total change of the sum of the total mortgages in a country year on year, we will have to analyse this further in detail. <br>
+						<i>
+						Movement in the mortgage flux can be the result of changes in either the prices of dwellings or the volumes of dwellings being sold at a given time. <br>
+						</i>
+						In the next section we will split the data up and analyse price changes and volume changes seperately, in order to get a better understanding of the results of the last section. <br>
+					</p>
+            	</div>
+          	</div>
+    	</div>
+    </div>
+
+	<div class="row">
+        <div class="col-lg-6">
+          	<div class="card">
+            	<div class="card-body">
+            		<h5 class="card-title"><b>Analysis Part 2 : <i>Dwelling Price Volatility</i></b><Title></Title></h5>
+            		<p>
+						For this next section I have made some <i>changes and transformations</i> to the dataset to shape it to a form we can use for our analysis. <br>
+						The new dataset shows the <b>monthly change of the interest rate </b> and the <b>monthly change of dwelling prices</b> (calculated based on the price per square meter in euro's) in the whole of France, month on month. <br>
+					</p>
+
+					<p>
+						We'll start by plotting a scatterplot of this data, be mindfull of the axes and the legend in this following graph! <br>
+						<ul>
+							<li>
+								<p>
+									Within the graph I have highlighted some area's in a light red color in order to create a distinction between the different sections of the graph. <br>
+								</p>
+							</li>
+							<li>
+								<p>
+									The X-axis represents the monthly change in interest rates, the Y-axis represents the monthly change in average house prices in France. <br>
+								</p>
+							</li>
+							<li>
+								<p>
+									Notice that 0 is somewhat in the middle of both axes, meaning we have 4 distinct sections within the graph that can be useful for the analysis. <br>
+								</p>
+							</li>
+						</ul>
+					</p>
+
+					<img src="{% static 'images/graphs/deltasales-deltainterest_scatter.png' %}" alt="" class="graph-image">
+
+					<p>
+						We can see that the majority of the scatter points are located in the top left quadrant of our graph. <br>
+						<b>This means that a decrease in the interest rate usually results in an increase in house prices.</b> <br>
+						This seems to be aligned with our prior hypothesis.
+					</p>
+
+					<p>
+						What interests me the most about this graph is the bottom right quadrant. <br> <br>
+						We see that most of the scatter points in this region are orange-yellow in color. <br>
+						According to the legend on the right this corresponds to the year 2022 onwards. <br>
+						To go more in depth, I decided to split this graph up in 4 equal parts, each representing a year from 2020 onwards. <br>
+					</p>
+
+					<p>
+						<i>We get the following results:</i>
+					</p>
+
+					<img src="{% static 'images/graphs/deltasales-deltainterest_facet_scatter.png' %}" alt="" class="graph-image">
+
+					<p>
+						<b>We see the following trends:</b>
+					</p>
+					<ol>
+						<li>
+							<p>
+								In late 2020 and early 2021 we see a decrease of prices and interest changes. <br>
+								We can safely assign these changes to the COVID crisis, which started in mid 2020. <br>
+								Historicly, we see a decrease in both dwelling prices and interest rates when we are in a crisis, or recovering from one (i.e: 2008 Banking crisis). <br>
+							</p>
+						</li>
+
+						<li>
+							<p>
+								In 2022: the interest changes are constantly positive (i.e.: the interest keeps rising month on month). <br>
+								In the beginning the prices are still increasing, this is most likely a delayed reaction to the interest decreases at the end of last year. <br>
+								It's important to keep those delayed reactions in mind here because the data we are analysing is based on the prices of sold dwellings, and not solely on listing prices. <br>
+								Near the latter stages of 2022, we see the prices start dipping below the zero line, meaning the price changes are now net negative. <br>
+							</p>
+						</li>
+
+						<li>
+							In 2023: the interest increases keep occuring monthly, this has an effect on the price changes. <br>
+							Prices are now beginning to consistantly decrease month on month. <br>
+							Looking back at the first graph of this report, we can see that this corresponds with the steep rise of the interest from 2022 onwards. <br>
+						</li>
+					</ol>
+
+					<p>
+						<i>Next let's quickly plot the correlation between these two indices before we move on to the volume analysis.</i>
+					</p>
+
+					<img src="{% static 'images/graphs/deltasales-deltainterest_pairgrid.png' %}" alt="" class="graph-image2">
+
+					<p>
+						On the barplots we notice that the prices changes are usually positive and the interest changes are mostly unchanged or slightly positive overal since 2015. <br>
+						This gives us a negative trendline between these two indices, which again is based on a linear regression line. <br>
+						We can see that the standard deviation of the linear regression is wider this time (the area in light red along the trendline) which is a direct result of these highly regional distributions. <br>
+					</p>
+            	</div>
+          	</div>
+    	</div>
+    </div>
+
+	<div class="row">
+        <div class="col-lg-6">
+          	<div class="card">
+            	<div class="card-body">
+            		<h5 class="card-title"><b>Analysis Part 3 : <i>Volume Analysis</i></b><Title></Title></h5>
+            		<p>
+						In the last part of this analysis we will take a closer look at the volumes and distributions that occur with interest changes in France. <br>
+						For this we will again transform the data to our liking, and create a dataset which hold information on yearly dwelling sales since 2015. <br>
+					</p>
+
+					<p>
+						<b>Let's remind ourselves of the hypothesis we stated earlier:</b>
+					</p>
+					<ul>
+						<li>
+							<p>
+								"Volumes of dwellings available/sold drop significantly when we see an increase of the interest rates."
+							</p>
+						</li>
+					</ul>
+
+					<p>
+						The following bar plot gives us an idea of the volume of sales in France in relation to the interest rates. <br>
+						Because we are primarily analysing data from 2015 onwards, I have taken a range of interest rates that apply for this period. <br>
+						The interest rate ranges are plotted on the X-axis, the Y-axis represents the volume of dwelling sales. <br>
+					</p>
+
+					<img src="{% static 'images/graphs/volumes_barplot.png' %}" alt="" class="graph-image">
+
+					<p>
+						<br>
+						The historical distribution of interest rates has a high density around 1.5% in our dataset, and falls off on either side of this peak. <br>
+						Given this fact it's important to note that the sales volumes of this barplot are normalized by the number of days at a given interest rate within the interest rate ranges. <br>
+						This gives a more fair and correct representation of the situation, and clarifies our analysis. <br>
+					</p>
+
+					<p>
+						It's clear to see a consistent decrease in sales volumes given an increase in interest rates, with a small hickup in the middle. <br>
+						If we concentrate on the lowest interest rate range (1.0 to 1.5%) and the highest one (3.0 - 3.5%), we see a decrease of 33% of the sales volumes in the highest interest rate range. <br>
+						This is quite significant and also aligns with our hypothesis. <br>
+					</p>
+
+					<p>
+						Now I have one more question I would like to answer with this dataset. <br>
+						Does an increase of the interest rate coincide with a shift of the sales volume distribution? <br>
+						More precisely, we want to answer hypothesis 3 and 4 to conclude this report. <br>
+					</p>
+
+					<p>
+						Let's center our analysis around the lowest and the highest interest rate ranges again, but this time we'll make a change in the axes. <br>
+						We will make a line plot giving the ratio's of the sales volumes on the Y-axis and the different price ranges on the X-axis. <br>
+					</p>
+
+					<p>
+						<i>The two lines on the graph represent the lowest and the highest interest rate range respectively.</i> <br>
+					</p>
+
+					<img src="{% static 'images/graphs/volumes_lineplot.png' %}" alt="" class="graph-image">
+
+					<p>
+						<br>
+						The graph shows us the shift in the distribution we were expecting. <br>
+						An increase of interest does in fact shift the distribution to the right, albeit slightly. <br> <br>
+						Remember that in the last section we concluded that most of the scatter points occured in the top left quadrant, where an increase in interest concurred with an increase in dwelling prices, which will be partly responsible for the shift in distribution as well. <br>
+					</p>
+            	</div>
+          	</div>
+    	</div>
+    </div>
+</section> <!-- End Section -->
+
+{% endblock %}

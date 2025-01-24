@@ -1,0 +1,130 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <div class="pagetitle">
+      <h1>Profile</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+          <li class="breadcrumb-item active"><a href="{% url 'profile' %}">Profile</a></li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section profile">
+      <div class="row">
+        <div class="col-xl-4">
+
+          <div class="card">
+            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+              <img src="{% static 'images/profile.jpg'%}" alt="Profile" class="rounded-circle">
+              <h2>Erik Kostanyan</h2>
+              <h3>Data Analyst</h3>
+              <div class="social-links mt-2">
+                <a href="https://github.com/erik-kostanyan" class="github"><i class="bi bi-github"></i></a>
+                <a href="https://www.linkedin.com/in/erik-kostanyan" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                <a href="{% url 'resume' %}" class="file-text-fill"><i class="bi bi-file-text-fill"></i></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-xl-8">
+
+          <div class="card">
+            <div class="card-body pt-3">
+              <!-- Bordered Tabs -->
+              <ul class="nav nav-tabs nav-tabs-bordered">
+
+                <li class="nav-item">
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
+                </li>
+
+                <li class="nav-item">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#projects-overview">Projects</button>
+                </li>
+
+              </ul>
+              <div class="tab-content pt-2">
+
+                <div class="tab-pane fade show active profile-overview" id="profile-overview">
+
+                  <h5 class="card-title">Qualifications</h5>
+
+                  <!-- <div class="row">
+                    <div class="col-lg-3 col-md-4 label ">University Ghent</div>
+                    <div class="col-lg-9 col-md-8">HND Commercial Engineering </div>
+                  </div> -->
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Harvard University Online (2021)</div>
+                    <div class="col-lg-9 col-md-8">CS50X, CS50P and CS50AI</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Google (2022)</div>
+                    <div class="col-lg-9 col-md-8">Google Data Analytics Certificate</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">DeepLearningAI (2024)</div>
+                    <div class="col-lg-9 col-md-8">Deep Learning Specialization</div>
+                  </div>
+                </div>
+
+                <div class="tab-pane fade projects-overview pt-3" id="projects-overview">
+
+                  <h5 class="card-title">Projects</h5>
+                  <!-- Profile Edit Form -->
+                  <form>
+                    <div class="row">
+                      <div class="col-lg-3 col-md-4 label">
+                        <a href="https://github.com/erik-kostanyan/Trigger_word_detection">Trigger Word Detection (AI)</a>
+                      </div>
+                      <div class="col-lg-9 col-md-8">
+                        <p>
+                          Keyword detection is used by many famous modern technologies like Amazon Alexa and Apple Siri. We want the device to start listening when we say a specific keyword, in our case the keyword is "activate". <br>
+                          In this project I created a dataset from scratch using Fourier Transforms to mix our signal "activate" with some generic speech soundbites. <br>
+                          We use this training set to train a model to detect our signal in various sound files, using TensorFlow and Keras in Python.
+                          Because we transformed the sounds to images using Fourier Transforms, we used Convolutional Layers and GRU.
+                          We end up creating a model with an accuracy of above 92%.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-3 col-md-4 label">
+                        <a href="https://github.com/erik-kostanyan/">French Real Estate Analysis</a>
+                      </div>
+                      <div class="col-lg-9 col-md-8">
+                        <p>
+                          Starting from a Kaggle Dataset, this became an end-to-end data analytics project, with some backend implementations on top.
+                          After cleaning, transforming and analysing the data in Python with Pandas, NumPy and Plotly, I decided to create a website around this project 
+                          where I created the backend of the website with Django.
+                          I implemented Django with Dash and Plotly to generate dynamic and responsive graphs for the clients to interact with.
+                          The database was originally a MySQL instance, which is linked with Django to complete this project.
+
+                        </p>
+                      </div>
+                    </div>
+                  </form> <!-- End Profile Edit Form -->
+
+                </div> 
+
+               </div> <!-- End Bordered Tabs -->
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- End #main -->
+
+{% endblock %}

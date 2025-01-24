@@ -1,0 +1,24 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <div class="pagetitle">
+      <h1>Profile</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+          <li class="breadcrumb-item active"><a href="{% url 'resume' %}">Resume</a></li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+
+    <section class="section">
+        <object data="{% static 'resume/CV_ErikKostanyan_English.pdf' %}" type="application/pdf" class="resume_object" style="display: inline-block; height: 100VW; width: 100%;">
+            <p>Sorry, the Resume could not be retrieved, try again later.</p>
+        </object>
+    </section>
+
+{% endblock %}
